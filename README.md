@@ -88,6 +88,6 @@ The skill builds with the [`motion-skills`](https://www.npmjs.com/package/motion
 
 ## License
 
-- The Motion Director skill (`skills/motion-director/`) is free to use and modify, and everything you render with it is yours, including for commercial and client work. See [its license](skills/motion-director/LICENSE.md).
+- The Motion Director skill (`skills/motion-director/`) is free to use and modify, and everything you render with it is yours, including for commercial and client work. See [its license](skills/motion-director/LICENSE.md). Fork it for your own use; please don't repackage it into another skill library or marketplace.
 
 Motion Skills is an independent project and is not affiliated with Anthropic. Claude is a trademark of Anthropic, PBC.
