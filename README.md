@@ -55,7 +55,7 @@ One 10–20 second film of whatever you bring:
 
 ## Full films
 
-Motion Director is deliberately short. Each kind of film has its own full-film skill. It picks up the same project and makes the whole film (30–90 s), with that type's structure and styles built in. These skills are paid: **$4.90 each, once**, or all of them for $9.90 a month. Browse them at **[claude-motion.com/skills](https://claude-motion.com/skills)**.
+Motion Director is deliberately short. Each kind of film has its own full-film skill. It picks up the same project and makes the whole film at the length that type needs (from a few-second logo sting to a two-minute lesson), with that type's structure and styles built in. These skills are paid: **$4.90 each, once**, or all of them for $9.90 a month. Browse them at **[claude-motion.com/skills](https://claude-motion.com/skills)**.
 
 | Scene | Full-film skills |
 |---|---|
