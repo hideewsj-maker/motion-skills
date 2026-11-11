@@ -1,6 +1,6 @@
-# Motion Skills: make videos with Claude Code, Codex or Cursor
+# Motion Skills: Claude Motion-style videos in Claude Code, Codex or Cursor
 
-**A free Claude Code skill for making short animated films.** You give your coding agent your own material (a site, a repo, a changelog, a spreadsheet, notes) and it directs a short animated film with music, then renders it as an MP4 on your computer.
+**Motion Director is a free Claude Code skill for making short animated videos, and a free alternative to Claude Motion for people on Pro or Max.** Claude Motion is in beta on Claude Team and Enterprise only. With this skill, your coding agent takes your own material (a site, a repo, a changelog, a spreadsheet, notes) and directs a short animated film with music: a launch teaser, a product demo, an explainer, a data video or a vertical short. It renders the MP4 on your computer.
 
 - **No Remotion setup.** The agent writes the film as one HTML page (HTML, CSS and GSAP), and the engine renders it in the Chrome you already have.
 - **Any Claude plan.** It works on Pro and Max and in other agents; you don't need Claude Motion, which is in beta on Team and Enterprise.
@@ -11,6 +11,8 @@
   <img src="assets/motion-director-tally.gif" width="640" alt="A 20-second launch teaser for a sample app, Tally 2.0, made by Motion Director from its CHANGELOG.md: the name, the new payment link shown in use, and the average time to get paid falling from 18 to 9 days, with its source on screen.">
   <br><sub>Made by Motion Director from the sample <code>examples/CHANGELOG.md</code> (a made-up app). The real film has its own score.</sub>
 </p>
+
+**In this README:** [Quick start](#quick-start) · [Three runs, start to finish](#three-runs-start-to-finish) · [What it makes](#what-motion-director-makes) · [How it compares](#how-it-compares) · [Security and privacy](#security-and-privacy)
 
 ## Quick start
 
@@ -41,6 +43,33 @@ Or ask your agent to do it: *"Install the motion-director skill from https://git
 > Use the motion-director skill: a 15-second launch teaser for our 2.0 release, 16:9, from the notes in CHANGELOG.md.
 
 The agent proposes **three directions**, each a one-line pitch with one still. You pick one, and it builds the film, writes its music, checks every frame and renders `out/film.mp4`. To change it, say so in plain words: *"make the second scene shorter"*, *"use our brand colours"*. You can also open `npx motion-skills studio`, click a spot in the frame and type the change there.
+
+## Three runs, start to finish
+
+What went in, what was asked, what came out and how long it took. Each is one whole run on November 12, 2026, with Claude Opus 5.5 as the coding agent and nobody at the keyboard: the agent drew its three directions, picked one itself and rendered. Nobody asked for a change afterwards. The films are shown as they were rendered (the real ones have music).
+
+| | Given | Asked | Took | Got |
+|---|---|---|---|---|
+| **1** | [`CHANGELOG.md`](skills/motion-director/examples/CHANGELOG.md) of a made-up invoicing app | *"Use the motion-director skill: a 15-second launch teaser for our 2.0 release, 16:9, from the notes in CHANGELOG.md."* | **16 min** | 15 s · 16:9 launch teaser |
+| **2** | `uk-coal-share.csv`, 106 rows ([Our World in Data](https://ourworldindata.org/grapher/share-electricity-coal), citing Ember, CC BY 4.0) | *"Use the motion-director skill: a vertical 9:16 film, about 15 seconds, of the UK coming off coal, from uk-coal-share.csv (source in SOURCE.md). Music, no voiceover. Show the source on screen."* | **14 min** | 15 s · 9:16 data video |
+| **3** | `notes.md`, six bullet points on the rule of 72 | *"Use the motion-director skill: explain the rule of 72 in about 20 seconds, 16:9, from my notes in notes.md. For people new to saving."* | **12 min** | 20 s · 16:9 explainer |
+
+<p align="center">
+  <a href="https://claude-motion.com/skills/motion-director#cases"><img src="assets/tally.gif" width="640" alt="Run 1: a launch teaser for the sample app Tally 2.0. An invoice's payment link is copied, the client pays by card, the invoice is stamped Paid, then: Get paid in 9 days, not 18."></a>
+  <br><sub><b>1.</b> The link is copied, the client pays by card, the invoice is stamped Paid, then the number from the beta. The invoice is a made-up sample and says so on screen.</sub>
+</p>
+
+<p align="center">
+  <a href="https://claude-motion.com/skills/motion-director#cases"><img src="assets/coal.gif" width="300" alt="Run 2: UK electricity from coal. The screen is the chart; black drains from 97.0% in 1920 to 0.1% in 2025 while a counter steps through every year."></a>
+  <br><sub><b>2.</b> The screen is the chart: black is coal's share, and the counter steps through all 106 rows. The agent saw smeared digits in its first render, fixed them and rendered again; that is inside the 14 minutes.</sub>
+</p>
+
+<p align="center">
+  <a href="https://claude-motion.com/skills/motion-director#cases"><img src="assets/rule72.gif" width="640" alt="Run 3: the rule of 72 on a whiteboard. Two timelines on one scale: at 9% a coin doubles at year 8, at 3% at year 24. 8 years instead of 24."></a>
+  <br><sub><b>3.</b> Two timelines on one scale: at 9% the coin doubles at year 8, at 3% at year 24. Every number is in the notes.</sub>
+</p>
+
+Time is wall-clock, from the agent's first command to the rendered MP4, with all three running at once on one Apple-silicon Mac, on our development copy of the engine (0.1.6). Your agent, model and machine will change it. The films with sound are at [claude-motion.com/skills/motion-director](https://claude-motion.com/skills/motion-director#cases).
 
 ## What Motion Director makes
 
@@ -84,7 +113,15 @@ The skill builds with the [`motion-skills`](https://www.npmjs.com/package/motion
 
 - **[HTML to video](https://claude-motion.com/html-to-video):** already have an HTML animation, for example one from a Claude or ChatGPT artifact? Record it as an MP4 in your browser. Free, no upload.
 - **[Claude Motion prompts](https://claude-motion.com/claude-motion-prompts):** ready-to-paste motion prompts, with previews.
-- **Telemetry:** when a render finishes, the engine tells claude-motion.com which skill rendered and whether it worked. Nothing about your film is sent. Set `MOTION_SKILLS_TELEMETRY=0` to turn it off.
+
+## Security and privacy
+
+- **Nothing is uploaded.** The agent writes the film as files in your project folder, and the engine renders them in the Chrome already on your machine. There is no cloud render, no video model and no API key.
+- **What you install is readable.** The skill is the Markdown in [`skills/motion-director`](skills/motion-director): a `SKILL.md` and its references, no binaries and no install scripts. The engine is the [`motion-skills`](https://www.npmjs.com/package/motion-skills) package on npm, MIT licensed, plain JavaScript you can read in `node_modules`.
+- **No account for this route.** Copying the skill folder from this repository needs no sign-in.
+- **Telemetry, and how to turn it off.** When a render finishes, the engine sends claude-motion.com five things: the skill's name, the step, whether it worked (on failure one word such as `ffmpeg` or `disk`), the engine's version, and a random number made for that project so a retried film is not counted twice. It never sends a file, a path, your text or any of the film. Set `MOTION_SKILLS_TELEMETRY=0` to send nothing.
+- **Network use.** `npx` downloads the engine from npm the first time, and `mo fonts add` downloads the fonts a film uses into the project folder. Your material is read where it is.
+- **Found a problem?** Open an issue here or write to hi@claude-motion.com.
 
 ## License
 
